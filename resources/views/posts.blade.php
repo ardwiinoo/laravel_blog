@@ -1,5 +1,14 @@
+
 @extends('layouts.app');
 
 @section('content');
-	<center><h1>Ini adalah halaman Blog</h1></center>
+	
+	@foreach($posts as $post)
+		<article class="mb-5">
+			<h2><a href="/posts/{{ $post['slug'] }}">{{ $post['title'] }}</a></h2>
+			<small><b>{{ $post['author'] }}</b></small>
+			<p>{{ $post['body'] }}</p>
+		</article>
+	@endforeach
+
 @endsection
