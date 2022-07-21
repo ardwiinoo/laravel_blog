@@ -2,5 +2,9 @@
 
 
 @section('content')
-	<h1>Ini adalah halaman Home</h1>
+<div class="card">
+	<div class="card-body">
+		<p>Ini adalah halaman <b>Home</b></p>
+	</div>
+</div>
 @endsection
