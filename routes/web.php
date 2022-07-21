@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,55 +32,6 @@ Route::get('/about', function () {
 });
 
 
-Route::get('/blog', function () {
+Route::get('/blog', [PostController::class, 'index']);
 
-    $blog_post = [
-    [
-        "title" => "Judul post pertama",
-        "slug" => "judul-post-pertama",
-        "author" => "Arif Dwi N",
-        "body" => "Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Maxime, consequatur enim, necessitatibus ad incidunt omnis voluptatem minima, dolore, accusantium laudantium expedita ipsa totam. Autem voluptatibus cum obcaecati magnam excepturi sequi!Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod"
-    ],
-      [
-        "title" => "Judul post kedua",
-        "slug" => "judul-post-kedua",
-        "author" => "Nugroho",
-        "body" => "Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Maxime, consequatur enim, necessitatibus ad incidunt omnis voluptatem minima, dolore, accusantium laudantium expedita ipsa totam. Autem voluptatibus cum obcaecati magnam excepturi sequi!Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod"
-    ]
-];
-
-    return view('posts', [
-        "title" => "Blog",
-        "posts" => $blog_post
-    ]);
-});
-
-Route::get('posts/{slug}', function($slug) {
-
-        $blog_post = [
-    [
-        "title" => "Judul post pertama",
-        "slug" => "judul-post-pertama",
-        "author" => "Arif Dwi N",
-        "body" => "Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Maxime, consequatur enim, necessitatibus ad incidunt omnis voluptatem minima, dolore, accusantium laudantium expedita ipsa totam. Autem voluptatibus cum obcaecati magnam excepturi sequi!Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod"
-    ],
-      [
-        "title" => "Judul post kedua",
-        "slug" => "judul-post-kedua",
-        "author" => "Nugroho",
-        "body" => "Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Maxime, consequatur enim, necessitatibus ad incidunt omnis voluptatem minima, dolore, accusantium laudantium expedita ipsa totam. Autem voluptatibus cum obcaecati magnam excepturi sequi!Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod"
-    ]
-];
-
-    $new_post = [];
-    foreach($blog_post as $post) {
-        if($post['slug'] === $slug) {
-            $new_post = $post;
-        }
-    }
-
-    return view('post', [
-        "title" => "Single Post",
-        "post" => $new_post
-    ]);
-});
+Route::get('posts/{slug}', [PostController::class, 'show']);
