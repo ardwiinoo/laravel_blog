@@ -23,3 +23,4 @@ class PostController extends Controller
         ]);
     }
 }
+
