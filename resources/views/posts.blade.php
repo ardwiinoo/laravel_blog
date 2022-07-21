@@ -1,7 +1,7 @@
 
-@extends('layouts.app');
+@extends('layouts.app')
 
-@section('content');
+@section('content')
 	
 	@foreach($posts as $post)
 		<article class="mb-5">
