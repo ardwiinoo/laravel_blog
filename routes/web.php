@@ -33,4 +33,4 @@ Route::get('/about', function () {
 
 Route::get('/blog', [PostController::class, 'index']);
 
-Route::get('posts/{slug}', [PostController::class, 'show']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']); //posts/{post:slug} akan mengirim slug post, jika hanya posts/{post} akan secara default mengirim id
