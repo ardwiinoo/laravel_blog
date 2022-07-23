@@ -1,0 +1,14 @@
+Dropped all tables successfully.
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table (540.95ms)
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table (884.91ms)
+Migrating: 2019_08_19_000000_create_failed_jobs_table
+Migrated:  2019_08_19_000000_create_failed_jobs_table (527.52ms)
+Migrating: 2019_12_14_000001_create_personal_access_tokens_table
+Migrated:  2019_12_14_000001_create_personal_access_tokens_table (805.39ms)
+Migrating: 2022_07_22_112947_create_posts_table
+Migrated:  2022_07_22_112947_create_posts_table (584.92ms)
+Migrating: 2022_07_23_034602_create_categories_table
+Migrated:  2022_07_23_034602_create_categories_table (2,098.97ms)
