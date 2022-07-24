@@ -12,7 +12,7 @@ class PostController extends Controller
         return view('posts', [
             "title" => "All Posts",
             // "posts" => Post::all() // menampilkan semua post urut dari id
-            "posts" => Post::with(['user', 'category'])->latest()->get() // menampilkan post urut dari waktu terbaru dengan eager loading
+            "posts" => Post::latest()->get() // menampilkan post urut dari waktu terbaru dengan eager loading
         ]);
     }
 
