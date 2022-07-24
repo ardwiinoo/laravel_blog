@@ -10,11 +10,13 @@ class PostController extends Controller
     public function index()
     {
         return view('posts', [
-            "title" => "Blog",
+            "title" => "All Posts",
             // "posts" => Post::all() // menampilkan semua post urut dari id
-            "posts" => Post::latest()->get() // menampilkan post urut dari waktu terbaru
+            "posts" => Post::with(['user', 'category'])->latest()->get() // menampilkan post urut dari waktu terbaru dengan eager loading
         ]);
     }
+
+    // with(['user', 'category']) --> digunakan untuk mengatasi N+1 Problem
 
     public function show(Post $post) // route model binding
     {
