@@ -18,13 +18,15 @@ use App\Models\User;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        'active' => 'Home',
     ]);
 });
 
 Route::get('/about', function () {
     return view('about', [
         "title" => "About",
+        'active' => 'About',
         "name" => "Arif Dwi Nugroho",
         "email" => "ardwiinoo@gmail.com",
         "image" => "profil.png"
@@ -39,6 +41,7 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']); //posts/{post:
 Route::get('/categories', function () {
     return view('categories', [
         'title' => 'Post Categories',
+        'active' => 'Categories',
         'categories' => Category::all()
     ]);
 });
@@ -46,6 +49,7 @@ Route::get('/categories', function () {
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('posts', [
         'title' => "Post By Category : $category->name",
+        'active' => 'Categories',
         'posts' => $category->posts->load('category', 'user') // lazy eager loading
     ]);
 });
@@ -53,6 +57,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 Route::get('/authors/{author:username}', function (User $author) {
     return view('posts', [
         'title' => "Post By Author : $author->name",
+        'active' => 'Blog',
         'posts' => $author->posts->load('category', 'user') // lazy eager loading
     ]);
 });
