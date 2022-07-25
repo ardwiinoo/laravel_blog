@@ -11,6 +11,7 @@ class PostController extends Controller
     {
         return view('posts', [
             "title" => "All Posts",
+            "active" => "Blog",
             // "posts" => Post::all() // menampilkan semua post urut dari id
             "posts" => Post::latest()->get() // menampilkan post urut dari waktu terbaru dengan eager loading
         ]);
@@ -22,6 +23,7 @@ class PostController extends Controller
     {
         return view('post', [
             "title" => "Single Post",
+            "active" => "Blog",
             "post" => $post
         ]);
     }
