@@ -20,10 +20,11 @@ class DatabaseSeeder extends Seeder
         // Use Faker Library
         User::factory(3)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'Arif Dwi',
+            'email' => 'arip@gmail.com',
+            'password' => '12345'
+        ]);
 
         // seed author
         // User::create([

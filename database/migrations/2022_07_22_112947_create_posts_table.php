@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('title'); // judul
             $table->string('slug')->unique(); // slug harus berbeda dari yang lain
+            $table->string('image')->nullable(); // boleh kosong
             $table->text('excerpt'); // untuk menyimpan sebagian kecil karakter.
             $table->text('body'); // isi blog
             $table->timestamp('published_at')->nullable(); // waktu post di publish

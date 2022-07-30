@@ -26,7 +26,13 @@
 @if ($posts->count()) <!-- true: jika > 0; dan false: jika < 0; -->
 	<!-- Hero post -->
 	<div class="card mb-3 shadow-sm p-1 mb-5 bg-body rounded">
-		<img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}" loading="lazy">
+		@if ($posts[0]->image)
+			<div style="max-height: 400px; overflow: hidden">
+				<img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top" alt="{{ $posts[0]->category->name }}">
+			</div>
+		@else
+			<img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}" loading="lazy">
+		@endif
 		<div class="card-body ">
 		<h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->title }}</a></h3>
 		<p><small class="text-muted"> 
@@ -45,7 +51,11 @@
 			<div class="col-md-4 mb-3">
 				<div class="card shadow-sm p-1 mb-5 bg-body rounded">
 					<div class="position-absolute text-white px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)"><a href="/blog?category={{ $post->category->slug }}" class="text-white text-decoration-none">{{ $post->category->name }}</a></div>
-					<img src="https://source.unsplash.com/300x200?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}" loading="lazy">
+					@if ($post->image)
+						<img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->category->name }}">
+					@else
+						<img src="https://source.unsplash.com/300x200?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}" loading="lazy">	
+					@endif
 					<div class="card-body">
 					<h5 class="card-title">{{ $post->title }}</h5>
 					<p><small class="text-muted"> 
