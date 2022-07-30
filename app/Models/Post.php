@@ -4,14 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     //protected $fillable = ['title', 'excerpt', 'body']; // ini yang boleh diisi sisanya gaboleh
     protected $guarded = ['id']; // ini yang gaboleh diisi sisanya boleh
     protected $with = ['category', 'user']; // eager loading
+
+    // // untuk slugabble
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     // untuk fitur search
     public function scopeFilter($query, array $filters)
