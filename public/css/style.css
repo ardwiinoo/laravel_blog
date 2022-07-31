@@ -20,3 +20,11 @@
 body {
 	color: #323232;
 }
+
+.card-title:hover {
+	text-decoration: underline;
+}
+
+h4:hover {
+	text-decoration: underline;
+}
