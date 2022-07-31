@@ -3,7 +3,7 @@
 
 @section('content')
 	
-<h1 class="mb-3 text-center">{{ $title }}</h1>
+<h1 class="mb-4 text-center">{{ $title }}</h1>
 
 <div class="row justify-content-center mb-3">
 	<div class="col-md-6">
@@ -31,9 +31,9 @@
 				<img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top" alt="{{ $posts[0]->category->name }}">
 			</div>
 		@else
-			<img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}" loading="lazy">
+			<img src="https://source.unsplash.com/1200x350?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}" loading="lazy">
 		@endif
-		<div class="card-body ">
+		<div class="card-body text-center">
 		<h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->title }}</a></h3>
 		<p><small class="text-muted"> 
 			By <a href="/blog?author={{ $posts[0]->user->username }}" class="text-decoration-none">{{ $posts[0]->user->name }}</a> 
@@ -41,7 +41,9 @@
 			{{ $posts[0]->created_at->diffForHumans() }} <!-- diffForHumans() akan menampilkan waktu format 3 min ago (library carbon) -->
 		</small></p>
 		<p class="card-text">{{ $posts[0]->excerpt }}</p>
-		<a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none btn btn-success">Read more</a>
+		<div class="d-grid gap-2 col-4 mx-auto">
+			<a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none btn btn-success">Read more</a>
+		</div>
 		</div>
 	</div>
 
@@ -49,7 +51,7 @@
 		<div class="row">
 		@foreach($posts->skip(1) as $post)
 			<div class="col-md-4 mb-3">
-				<div class="card shadow-sm p-1 mb-5 bg-body rounded">
+				<div class="card shadow-sm p-1 mb-3 bg-body rounded">
 					<div class="position-absolute text-white px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)"><a href="/blog?category={{ $post->category->slug }}" class="text-white text-decoration-none">{{ $post->category->name }}</a></div>
 					@if ($post->image)
 						<img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->category->name }}">
@@ -63,7 +65,9 @@
 						{{ $post->created_at->diffForHumans() }} <!-- diffForHumans() akan menampilkan waktu format 3 min ago (library carbon) -->
 						</small></p>
 					<p class="card-text">{{ $post->excerpt }}</p>
-					<a href="/posts/{{ $post->slug }}" class="btn btn-success">Read more</a>
+					<div class="d-grid">
+						<a href="/posts/{{ $post->slug }}" class="btn btn-success">Read more</a>
+					  </div>
 					</div>
 				</div>
 			</div>
