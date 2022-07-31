@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardPostController extends Controller
 {
@@ -110,6 +111,7 @@ class DashboardPostController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'category_id' => 'required',
+            'image' => 'image|file|max:1024',
             'body' => 'required'
         ];
 
@@ -119,6 +121,15 @@ class DashboardPostController extends Controller
         }
 
         $validatedData = $request->validate($rules);
+
+        // cek jika gambar diisi
+        if ($request->file('image')) {
+            // jika gambar lama ada hapus dulu
+            if ($post->image) {
+                Storage::delete($post->image);
+            }
+            $validatedData['image'] = $request->file('image')->store('post-images'); // store => menyimpan ke lokasi 
+        }
 
         // ambil id user login
         $validatedData['user_id'] = auth()->user()->id;
@@ -140,6 +151,11 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
+        // jika ada gambar hapus juga
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
+
         // delete post
         Post::destroy($post->id);
 
